@@ -1,5 +1,5 @@
 #summary Feature Guide and Project Release Plan
-#labels Phase-Requirements,Phase-Design
+#labels Phase-Requirements,Phase-Design,Featured
 
 = Introduction =
 
