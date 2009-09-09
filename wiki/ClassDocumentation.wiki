@@ -1,0 +1,12 @@
+#summary Basic code structural overview.
+#labels Phase-Design,Featured
+
+= Data Model =
+
+DViz has at it's heart the data model. This model, stored in /trunk/src/model, begins with the *AbstractItem* class, and branches into visible (AbstractVisibleItem - text, images, etc) and non-visible items (AbstractNonVisibleItem - sounds, events, scripts, etc). 
+
+Of course, the model for the items is only one part of the model. "Above" that, you've got the *Slide* model, which is a collection of items. In the future, the slide will also hold a timeline, indicating changes to items at various points in the life of the slide. A Slide represents a single canvas of items, whereas a *SlideGroup* (yet to be created) represents a sequence of Slides. 
+
+Additionally, it is envisioned that a *SlideGroup* can have one or more *SlideMasterTemplate*s, which in turn have one or more *SlideMasterTemplateSlide*s. Now, this paragraph is still a bit nebuleous - I haven't made it this far in the code yet. I'll try to remember to write more here when I do!
+
+That's all for now, folks. More to come as I flesh it all out.
