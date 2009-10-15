@@ -7,21 +7,21 @@ This project was started using the [http://code.google.com/p/fotowall/ fotowall]
 
 = Main Window =
 
-The core is *MainWindow* which holds a list of songs using the code in the *songdb/* folder to load and manage the songs. The list of slide groups is a QListView displayed using the model in *DocumentListModel*. That model interfaces with the *Document* class (under model/Document.cpp) to pull a list of *SlideGroup*s (model/SlideGroup.cpp) and renders icons of the first *Slide* (model/Slide.cpp) using *SlideGroupFactory* (model/SlideGroupFactory.cpp).
+The core is *MainWindow* which holds a list of songs using the code in the *songdb/* folder to load and manage the songs. The list of slide groups is a QListView displayed using the model in *DocumentListModel*. That model interfaces with the *Document* class (under model/Document.cpp) to pull a list of *SlideGroups* (model/SlideGroup.cpp) and renders icons of the first *Slide* (model/Slide.cpp) using *SlideGroupFactory* (model/SlideGroupFactory.cpp).
 
 = Slide Groups =
 
-Each SlideGroup is composed of one or more *Slide*s (model/Slide.cpp), which, in turn, are composed of one or more *AbstractItem*s (well, really the relevant subclass is the actual object, but all items on the slide inherit from AbstractItem as the grandparent, and *AbstractVisualItem* as the parent, or *AbstractNonVisualItem* as the parent for "hidden" items like sounds, scripts, etc.
+Each SlideGroup is composed of one or more Slides (model/Slide.cpp), which, in turn, are composed of one or more AbstractItem's (well, really the relevant subclass is the actual object, but all items on the slide inherit from AbstractItem as the grandparent, and *AbstractVisualItem* as the parent, or *AbstractNonVisualItem* as the parent for "hidden" items like sounds, scripts, etc.
 
 = Item Properties / Attributes =
 
-AbstractItem and all children use Qt Properties (Q_PROPERTY() macro) to describe the various attributes relevant to the specific class. All items inheriting from AbstractItem have an "itemName()", which is primarily relevant for use in debugging output (say, "TextBox12345"). AbstractItem also provides an itemChanged() signal which is fired whenever a property value is set on it or an inherited class. (Either through the direct settor (setColor(), for example), or thru the Qt Property interface (setProperty(const char*, QVariant). The itemChanged() signal is propogated up thru the Slide and the SlideGroup for easy monitoring of changes. This signal is used by the various list models to update their icons, and by the viewers to keep their visuals in sync.
+AbstractItem and all children use Qt Properties (Q_PROPERTY() macro) to describe the various attributes relevant to the specific class. All items inheriting from AbstractItem have an "itemName()", which is primarily relevant for use in debugging output (say, "TextBox12345"). AbstractItem also provides an itemChanged() signal which is fired whenever a property value is set on it or an inherited class. (Either through the direct settor (setColor(), for example), or thru the Qt Property interface (setProperty(). The itemChanged() signal is propogated up thru the Slide and the SlideGroup for easy monitoring of changes. This signal is used by the various list models to update their icons, and by the viewers to keep their visuals in sync.
 
 = Visual Delegates =
 
 AbstractVisualtem is the model that *describes* the attributes of an item. It does no drawing itself - it is just a basic QObject. It does, however, know how to *create* a proper visual delegate which will render the model on a QGraphicsScene. The relevant method is:
 
-AbstractContent * AbstractVisualItem::createDelegate(QGraphcisScene*,QGraphicsItem*parent);
+AbstractContent *** AbstractVisualItem::createDelegate(QGraphcisScene*,QGraphicsItem*parent);
 
 AbstractContent (in items/AbstractContent.cpp) syncs from the model item using AbstractContent::syncFromModelItem() and attaches a slot to the itemChanged() signal inorder to keep the QGraphicsItem up to date with the model. Each AbstractVisualItem must have a corresponding visual delegate in the /items/ folder inorder to be added to a graphics scene.
 
@@ -40,12 +40,12 @@ The corresponding visual delegates are:
   * *BackgroundContent* - Renders the background as described. Currently supports video loops and solid colors. Video is loaded using *QVideoProvider* (in qvideo/QVideoProvider.cpp), which uses FFMPEG internally as the decoder provider.
   * *TextBoxContent* - Renders the text with QTextDocument and applies a drop shadow if needed, caching the results in the QPixmapCache for speed.
   * *BoxContent* - Renders a basic rectangle with support for variable width outlines and configurable drop shadow. The drop shadow itself is cached in the QPixmapCache for speed.
-  * *VideoFileContent* - Renders a video loop using *QVideoProvider*.
-  * ImageFileContent* - Not yet implemented.
+  * *VideoFileContent* - Renders a video loop using QVideoProvider/
+  * *ImageFileContent* - Not yet implemented.
 
 = Using the Visual Elements = 
 
-A custom QGraphicsScene, *MyGraphicsScene* (MyGraphicsScene.cpp) handles basic support and props to use the visual delegates. It also provides a single point to load a slide into the scene: setSlide(Slide*). The MyGraphicsScene class also manages cross-fading between slides.
+A custom QGraphicsScene, *MyGraphicsScene* (MyGraphicsScene.cpp) handles basic support and props to use the visual delegates. It also provides a single point to load a slide into the scene: setSlide(). The MyGraphicsScene class also manages cross-fading between slides.
 
 *SlideGroupViewer* (SlideGroupViewer.cpp) manages the live output view and the preview in the main window.
 
@@ -58,5 +58,3 @@ The "live outputs" are described in the *Output* class (model/Output.cpp). An ou
 This project is envisioned to have multiple outputs, but as of this date (2009-10-15), I've only added support for a single live output. However, the model and the config dialogs are setup for more than one output. I just need to integrated the viewer structure.
 
 The outputs are stored in QSettings using the *AppSettings* class (AppSettings.cpp), which also stores a few user preferences such as snap to grid, etc.
-
-
