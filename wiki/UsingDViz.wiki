@@ -1,4 +1,5 @@
 #summary Basic Usage guide to DViz
+#labels Featured
 
 = Introduction =
 
@@ -22,3 +23,9 @@ DViz is designed to be easy to use and quick to learn. You should be able to ope
     * If something else was already live on the output, just double-click on the song in the schedule to send it to the live output.
     * To change slides in the song, just click the passage of text in the Slide List. Song passages are separated by dotted lines, while other slide group's slides are displayed in a grid with a larger snapshot of the slide. 
     * For more on changing slides and using the Output Control, see [GuideToOutputControl].
+
+= Basic Concepts =
+
+DViz's documents are a collection of "Slide Groups," which in turn are collections of "Slides." Every slide has a background and a number of visual items on them, such as videos, images, text boxes, etc. See [GuideToSlideEditing] for information on content creation.
+
+DViz includes a song database, and an advanced media browser for viewing and selecting videos and images as backgrounds for slides or songs. See [GuideToSongs] for information on editing and using songs.
