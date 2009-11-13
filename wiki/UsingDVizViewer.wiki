@@ -1,0 +1,25 @@
+#summary Information on using the network viewer client.
+
+= Introduction =
+
+DViz supports a network viewer for transmitting content over the network to be viewed on other computers. DViz only transmits the binary description of the items on the slide, not the actual rendered slide. It leaves the rendering of the slide up to the network viewer, allowing DViz to put some of the burden of rendering on the client. 
+
+The viewer can be run on any machine that has a network connection to the machine running dviz.exe. You can configure the port that dviz.exe listens to for each output using the Program Settings menu in dviz. Each output supports an virtually unlimited number of network viewers when using the "Network" option. The viewer just needs to be able to open a socket connection to the given port on the machine running dviz.exe. 
+
+= Images, Videos, and Other External Resources =
+
+Currently, the Network Viewer load image and video resources directly from the file system. That means that for the viewer to load the same background image as you added on the machine running DViz, it needs to have the same image at the same path on the machine running the network viewer. In practice, this usually means using a shared network drive on Windows or an NFS share on Linux/Mac. It's possible in the future DViz may transmit the images and videos directly to the viewer over the same socket, but for now the viewer opens the images itself from the filesystem directly. 
+
+Note that this does not mean you *MUST* have a shared network drive. The network viewer will happily load images & videos from the local disk, as long as they are in the same folder and location as specified on the controlling PC. You could just use a thumbdrive to copy images & video resources over to the network viewer if you so choose. 
+
+= Running the Viewer =
+
+  # Run dviz-viewer on your system. Right now, since there isn't an official release, this probably means locating the folder where you built the dviz-viewer executable and clicking on it.
+  # If this is your first time running the viewer on this machine, you'll want to tell setup the output.
+    * The network viewer only supports a single output per viewer. (There's nothing stopping you from running multiple viewers on the same machine, each outputting to a different screen though.)
+    * To setup the outputs, use the File->Setup Outputs menu option.
+    * The information about setting up an individual output in [GuideToOutputs] applies to the viewer here as well.
+    * The output view will not appear until after the viewer has connected to DViz.
+  # To connect to DViz, select File->Connect To... and enter the host and port selected.
+  # Once you click Ok, the viewer will begin connecting to DViz. If it cannot connect right away (e.g. DViz isn't open), it will keep trying to reconnect every second or so, unless you turned off the "Automatically Reconnect" option in the "Connect To" window.
+  # To disconnect, choose File->Disconnect or just close the viewer control window.
