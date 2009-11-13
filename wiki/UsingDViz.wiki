@@ -22,14 +22,3 @@ DViz is designed to be easy to use and quick to learn. You should be able to ope
     * If something else was already live on the output, just double-click on the song in the schedule to send it to the live output.
     * To change slides in the song, just click the passage of text in the Slide List. Song passages are separated by dotted lines, while other slide group's slides are displayed in a grid with a larger snapshot of the slide. 
     * For more on changing slides and using the Output Control, see [GuideToOutputControl].
-
-
-
-
-
-
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
