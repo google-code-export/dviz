@@ -1,4 +1,5 @@
 #summary Information on using the network viewer client.
+#labels Featured
 
 = Introduction =
 
