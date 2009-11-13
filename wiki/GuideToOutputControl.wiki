@@ -1,4 +1,5 @@
 #summary Using the Output Control Panel
+#labels Featured
 
 = Introduction =
 
@@ -77,4 +78,3 @@ DViz supports several built-in filters and an automatic text resizer facility.
 The text resizer is used on the foldback output to ensure the text is as big as possible. It can be turned off if desired, but it will be turned back on for the next slide group that goes live. If enabled, the text resizer automatically resizes font size of the top-most text box be as large as possible without dropping off the sides of the screen.
 
 The filters list displays the filters available, with a checkbox beside any filters currently active. When a song is live in the output control, an extra filter will be visible titled "Song Text Filter" (or something similar.) This is a special filter only compatible with songs. The filter names should be self-explanatory.
-
