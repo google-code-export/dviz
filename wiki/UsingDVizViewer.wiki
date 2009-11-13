@@ -13,6 +13,23 @@ Currently, the Network Viewer load image and video resources directly from the f
 
 Note that this does not mean you *MUST* have a shared network drive. The network viewer will happily load images & videos from the local disk, as long as they are in the same folder and location as specified on the controlling PC. You could just use a thumbdrive to copy images & video resources over to the network viewer if you so choose. 
 
+== Shared Disk Caches ==
+
+To speed up performance as much as possible, DViz stores the "rendered" version of items that take a "significant" amount of time to create, such as drop shadows, or the scaled version of large images used as backgrounds, large text boxes, etc. 
+
+DViz also caches these items in RAM (the amount of space allowed for the RAM cache is controlled under the Program Settings (or Setup Outputs in the viewer).
+
+To take advantage of the performance increases offered by caching the rendered outputs of these items across all the network viewers used, you can point all the viewers and the DViz control program to the same cache folder, located on a shared network location. In the Program Settings dialog (or Setup Outputs in the Viewer), the "Cache" tab also has an option labeled "Disk Cache." This folder defaults to the Windows Temporary Files location (or /tmp on Linux.) 
+
+To make use of the same cache folder for all the viewers and the control PC, just set all the viewers and the DViz control PC's "Disk Cache Location" to the same shared folder. For example, all your PCs have access to a shared "P:\Misc\Temp" folder, set the DViz control PC and the Viewer PC's "Disk Cache Location" to "P:\Misc\Temp". Now DViz and the DViz Viewer will automatically store and load all the rendered items to/from that folder.
+
+== Resource Path Translations ==
+
+It's possible that the shared drive on the controller computer may not be mapped to the same drive letter on the computer running the viewer. To handle that, DViz Viewer provides "Resource Path Translations," setup from the File -> Setup Output menu option, under the "Resources" tab.
+
+Say the "Control" PC has mounted the shared network storage as drive G:, and adds an image to a slide group from G:\Images\Foobar.jpg. However, a client running the Dviz-Viewer.exe has the same network share mounted as drive R:, and if it tried to load the original path of G:\Images..., it would fail. To fix this, you can use the Program Settings dialog to add a translation from "G:" to "R:". Note that this would also work for Linux or Mac clients in either direction. (E.g. the controller PC's drive G: is accessible on the Linux rendering client as /mnt/server2/groups/, so the translation in the linux client's program settings would be "G:" to "/mnt/server2/groups".)
+
+
 = Running the Viewer =
 
   # Run dviz-viewer on your system. Right now, since there isn't an official release, this probably means locating the folder where you built the dviz-viewer executable and clicking on it.
