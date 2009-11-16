@@ -29,6 +29,21 @@ It's possible that the shared drive on the controller computer may not be mapped
 
 Say the "Control" PC has mounted the shared network storage as drive G:, and adds an image to a slide group from G:\Images\Foobar.jpg. However, a client running the Dviz-Viewer.exe has the same network share mounted as drive R:, and if it tried to load the original path of G:\Images..., it would fail. To fix this, you can use the Program Settings dialog to add a translation from "G:" to "R:". Note that this would also work for Linux or Mac clients in either direction. (E.g. the controller PC's drive G: is accessible on the Linux rendering client as /mnt/server2/groups/, so the translation in the linux client's program settings would be "G:" to "/mnt/server2/groups".)
 
+== Fonts ==
+
+You must be careful about using non-standard fonts in your designs. 
+
+For example, say you design a slideshow on a PC with Microsoft Office 2007 installed and use the 'Calbri' or 'Constantina' fonts (both come with Office 2007). However, if you use the DViz Network Viewer to display the show on a PC that does not have Office 2007 installed, you probably wont have "Calbri" or "Constantina" on that PC. Therefore, when the show you designed is displayed on that PC, the fonts which are used in place of, for example, Calbri, may have different widths than Calbri - causing the font to fall outside the textbox that you gave it when you designed it. 
+
+To fix that scenario, you have two options:
+
+   # Install Office 2007 on the viewer PC
+   # Or, copy the fonts from C:\Windows\Fonts on the "Designer" PC (with Office 2007 installed) to the C:\Windows\Fonts folder on the "Viewer" PC (without Office 2007) installed
+
+Note that this "problem" is not unique to Office 2007 - it must be considered whenever you use a font that is not ubiquitous to every computer.
+
+In the future, DViz may be able to automatically copy the font over for you or some other magic adjustment - but for now, you must use your own magic brain to assist in this are. 
+
 
 = Running the Viewer =
 
