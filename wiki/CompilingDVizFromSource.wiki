@@ -22,6 +22,8 @@ This is a basic guide on compiling DViz using Qt 4.5.3 on Windows XP Pro.
     The '...' depends on the version of Qt you downloaded. 
   * You'll need mingw10.dll, QtCore4.dll, QtGui4.dll, QtNetwork4.dll, QtOpenGL4.dll, QtScript4.dll, QtSql4.dll, QtSvg4.dll, QtXml4.dll, and QtXmlPatterns4.dll
   * Copy these DLLs to the same folder as dviz.exe. 
+  * You'll need the Qt plugins from the Qt install location (C:\qt\...\qt\plugins) inorder to use the song database or use JPEGs on windows. 
+  * Copy the entire Qt Plugins folder to the same folder as dviz.exe
   * Now you can run DViz by just double-clicking on dviz.exe
 
 = Building the DViz Network Viewer = 
