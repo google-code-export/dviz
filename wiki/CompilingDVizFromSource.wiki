@@ -24,6 +24,8 @@ This is a basic guide on compiling DViz using Qt 4.5.3 on Windows XP Pro.
   * Copy these DLLs to the same folder as dviz.exe. 
   * You'll need the Qt plugins from the Qt install location (C:\qt\...\qt\plugins) inorder to use the song database or use JPEGs on windows. 
   * Copy the entire Qt Plugins folder to the same folder as dviz.exe
+  * With the addition of Exiv2 to the code base, you'll need the libexpat.dll and libexpatw.dll in the same folder as dviz.exe
+  * Copy the expat dlls from the src/imgtool/exiv2-0.18.2-qtbuild/win32/expat201/Bin/ into the same folder as dviz.exe
   * Now you can run DViz by just double-clicking on dviz.exe
 
 = Building the DViz Network Viewer = 
