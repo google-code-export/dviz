@@ -8,7 +8,8 @@ DViz is designed to be easy to use and quick to learn. You should be able to ope
 = Quick Start =
 
   # Download and Install DViz
-    Since DViz hasn't been officially "released" yet, you can download the source to DViz from [http://code.google.com/p/dviz/source/checkout the Google Code Source repository]. You'll need [http://qt.nokia.com/downloads Qt] to compile DViz. For more information on building DViz, see [CompilingDVizFromSource].
+    * You can download the Beta from [http://code.google.com/p/dviz/downloads/list] as a zip file - just extract the archive and run *dviz.exe*
+    * You may also download the source to DViz from [http://code.google.com/p/dviz/source/checkout the Google Code Source repository]. You'll need [http://qt.nokia.com/downloads Qt] to compile DViz. For more information on building DViz, see [CompilingDVizFromSource].
   # Open DViz 
   # Setup your "Live" output
     * Outputs are setup from the File menu under "Program Settings." Select "Configure Outputs" from the first tab.
