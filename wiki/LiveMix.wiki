@@ -5,16 +5,18 @@
 
 [http://corp.productiveconcepts.com/dropbox/LiveMixSnapshot.jpg http://corp.productiveconcepts.com/dropbox/LiveMixSnapshot-small.jpg]
 
-LiveMix is an video switching program I'm developing as a companion to DViz.
+LiveMix is an video switching program being developed as a companion to DViz.
 
-It's designed for time-critical performance, especially with regards to live video feeds from capture cards. I'm working hard to reduce the latency from the card to the screen to as low as possible. 
+It's designed for time-critical performance, especially with regards to live video feeds from capture cards. Reducing latency from the card to the screen is a key design goal in this program.
+
+(Yes, in the screenshot, the viewers in LiveMix are running at <= 15fps - they are intentionally rate-limited to reduce the performance burden placed on the GUI/CPU by the control window. The full-screen output window, however, runs with no upper bound on FPS.)
 
 = Features =
 
-* MDI UI
-* OpenGL rendering
-* Low-latency live video feeds
-* Integration with DViz as a video source or for overlays (TBD)
+  * MDI UI
+  * OpenGL rendering
+  * Low-latency live video feeds
+  * Integration with DViz as a video source or for overlays (TBD)
 
 = Appeal for Feedback =
 
