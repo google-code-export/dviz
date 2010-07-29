@@ -18,8 +18,37 @@ It's designed for time-critical performance, especially with regards to live vid
   * Low-latency live video feeds
   * Integration with DViz as a video source or for overlays (TBD)
 
+= For Programmers: Current Internal Design =
+
+== Video Source ==
+Currently, LiveMix is based on the concept of a "VideoSource" - of course, there is a class by that name. Various video providers implement the VideoSource class, currently there are: CameraThread, VideoThread, MjpegThread. So VideoSource defines the common interface, each of the threads implement the interface and do the actual work.
+
+=== Interface ===
+VideoSource emits frameReady() when a frame is generated. Any clients listening can get the frame by calling videoSource->frame(), which returns a minimalist class called VideoFrame, members: image : QImage, and holdTime : int.
+
+== Video Widget ==
+For displaying VideoSource's and VideoFrame's, there is the VideoWidget. It connects to a VideoSource and renders the VideoFrame, waiting for VideoFrame.holdTime to render the next frame. VideoWidget is a QGLWidget. 
+
+=== Alternative Rendering ===
+Currently, the LiveMix uses VideoWidget to render all its video. I've been experimenting with code from an old [http://doc.trolltech.com/qq/qq06-glimpsing.html Qt Quarterly, #06] on multithreaded OpenGL rendering. I've implemented that code for experimenting purposes in [http://code.google.com/p/dviz/source/browse/trunk/src/qq06-glthread /trunk/src/qq06-glthread]. Currently, the code in that folder can render live camera feeds on a spinning OpenGL cube as a texturemap at ~40-60fps.
+
+Since it's rendering everything in its own thread, it's not bogged down by or bogging down the main event loop. I've attempting to integrate the techniques learned in qq06-glthread into LiveMix by way of GLVideoThread.cpp and VideoOutputWidget.cpp - but as of right now, the code does not work. It compiles, but program freezes when trying to create the widget. This is an ongoing area of testing, so it may change in the future. However, for right now, LiveMix still relies on VideoWidget for its live output.
+
+== GUI ==
+
+The GUI for LiveMix centers around the MainWinodw class - a typical QMainWindow. I cheated and started with the Qt MainWindow example - so the member variable names in the class need a lot of cleaning up. I just hacked it till I got it working the way I expected. The UI itself works cleanly and without leftover artifacts from the example, but the code is quite unpleasant to read. More to cleanup on that later.
+
+The GUI is designed as a MDI interface - each of the video sources exist as an instance of MdiVideoChild, with sub-classes for cameras (MdiCamerWidget), videos (MdiVideoWidget), and MJPEG feeds (MdiMJpegWidget). 
+
+The output preview itself is also an instance of MdiVideoChild, MdiPreviewWidget. It manages the live output window, currently just a top-level VideoWidget.
+
+== Future ==
+
+The code is under heavy development. Check back for more information later - hopefully I'll remember to update this wiki page as I code more!
+
+
 = Appeal for Feedback =
 
 LiveMix is under heavy, active development now - features and code subject to change at a moments notice.
 
-The source for LiveMix is in the /trunk/source/livemix directory - download it and check it out! Let me know what you think - email me at [mailto:josiahbryan@gmail.com josiahbryan@gmail.com]
+The source for LiveMix is in the [http://code.google.com/p/dviz/source/browse/trunk/src/livemix /trunk/source/livemix] directory - download it and check it out! Let me know what you think - email me at [mailto:josiahbryan@gmail.com josiahbryan@gmail.com]
